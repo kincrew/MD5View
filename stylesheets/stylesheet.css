@@ -187,7 +187,9 @@ div.qItems {
 }
 div.aCorrect {
 	background: #40A040;
+	cursor: default;
 }
 div.iCorrect {
 	background: #DF0000;
+	cursor: default;
 }
