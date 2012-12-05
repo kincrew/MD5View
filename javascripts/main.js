@@ -18,7 +18,6 @@ var test = function(s) {
 		cards.push(""+Math.floor((Math.random()*10000)+1));
 	}
 	cards.shuffle();
-	console.log(cards);
 	$.each(cards, function(index, value){
 		var html = $('<div class="qItems">'+md5view(CryptoJS.MD5(value).toString())+"</div>");
 		$("#lists-item").append(html);
@@ -41,18 +40,22 @@ $(document).ready(function(){
 	$("#userInputField").keyup(EXCUTE);
 	$("#maker").html("oneiroi@outlook.com");
 
+	var check;
+
 	$("button").click(function(){
 		$("#lists-item").html("");
-		$("#overlay").css('height', $(document).height() + "px");
+		if (!check) {
+			$("#overlay").height($(document).height());
+			check = true;
+		}
 		$("#MD5ViewResult").hide();
 		$("#overlay").show();
-		$("#overlay2").fadeIn();
+		$("#overlay2").show();
 		test();
 	});
 	$("#close").click(function(){
-		$("#overlay2").fadeOut(function(){
-			$("#overlay").hide();
-			$("#MD5ViewResult").show();
-		});
+		$("#overlay2").hide();
+		$("#overlay").hide();
+		$("#MD5ViewResult").show();
 	});
 });
