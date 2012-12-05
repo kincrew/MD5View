@@ -3,7 +3,7 @@ html, body, div, ul, il, dd, dt, img, ol, h1, h2, h3, h4, h5, h6 {
 }
 input, textarea {outline:0;resize: none;}
 html, body {
-	font: 12px/20px helvetica, serif;
+	height:100%; font: 12px/20px helvetica, serif;
 }
 .clr {
 	clear: both;
@@ -20,7 +20,6 @@ h3 {font-size: 22px; line-height: 28px; margin: 10px 5px 10px;}
 	width: 960px;
 	margin: 0 auto;
 	padding: 10px 0 10px;
-	height: 360px;
 }
 #userInputField {
 	border: 3px solid #222;
@@ -37,7 +36,8 @@ h3 {font-size: 22px; line-height: 28px; margin: 10px 5px 10px;}
 #userResult {
 	float: left;
 	width: 470px;
-	height: 200px;
+	height: 220px;
+	padding-bottom: 10px;
 }
 #userResult {
 	padding-left: 10px;
@@ -46,7 +46,7 @@ h3 {font-size: 22px; line-height: 28px; margin: 10px 5px 10px;}
 #userResultHex {
 	font-size:18px;
 	line-height:30px;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 #userResultHex,
 #userResultView {
@@ -54,22 +54,6 @@ h3 {font-size: 22px; line-height: 28px; margin: 10px 5px 10px;}
 }
 #inputKey {
 	padding-left: 3px;
-}
-span.key {
-	display: inline-block;
-	position:relative;
-	font:bold 26px/2em courier, monospace;
-	width: 2em;
-	border: 3px solid #222;
-	text-align: center;
-	padding: 0;
-	margin: 0;
-	margin-left:-3px;
-}
-span.key.focus {
-	background: #DF0000;
-	color: #F7F7F7;
-	text-shadow: 1px 1px #333;
 }
 div.code {
 	width: 940px;
@@ -119,4 +103,84 @@ div.code {
 	position:absolute;
 	left: 0; top: 0;
 	margin-top: -3px; margin-left: -3px;
+}
+
+/* TEST */
+button {
+	border: 3px solid #CB0000;
+	color: #EF0000;
+	cursor: pointer;
+	padding: 5px 20px;
+	border-radius: 5px;
+	margin: 0;
+	background: #f7f7f7;
+}
+button:hover {
+	border-color: #EF0000;
+}
+#overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+#overlay2 {
+	position: absolute;
+	top:0; left: 0;
+	display: none;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity=0.20);
+	opacity: 0.20;
+}
+#overlayContent {
+	position: relative;
+	z-index: 10;
+}
+#close {
+	position: absolute;
+	right: 50px;
+	top: 20px;
+	border: 3px solid #CB0000;
+	color: #EF0000;
+	cursor: pointer;
+	padding: 5px 20px;
+	border-radius: 5px;
+	margin: 0;
+	background: #f7f7f7;
+}
+
+#lists div.md5View {
+	margin: 30px;
+}
+
+#overlayContent {
+	position: relative;
+	top: 40px;
+	width: 960px;
+	margin: 0 auto;
+}
+#overlayContent #lists {
+	padding: 20px 0 50px;
+	background:#fff;
+	border-radius: 10px;
+	border:5px solid #f7f7f7;
+}
+#overlayContent #lists h3 {
+	padding: 0 30px 10px; border-bottom:10px solid #5D5D5D
+}
+
+
+#lists div.md5View {
+	cursor: pointer;
+}
+div.qItems {
+	float:left;
+}
+div.qItems.active {
+	background: #DF0000;
+}
+div.qItems.correct.active {
+	background: #40A040;
 }
