@@ -191,7 +191,7 @@ div.aCorrect {
 div.iCorrect {
 	background: #DF0000;
 }
-div.aCorrect div.qItems,
-div.iCorrect div.qItems {
+#lists div.aCorrect div.md5View,
+#lists div.iCorrect div.md5View {
 	cursor: default;
 }
