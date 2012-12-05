@@ -23,7 +23,9 @@ var test = function(s) {
 		$("#lists-item").append(html);
 		if (value == original) html.addClass("correct");
 		html.click(function(){
-			$(this).addClass('active');
+			// FIX IE CSS BUG
+			if ($(this).hasClass("correct")) $(this).addClass("aCorrect");
+			else $(this).addClass("iCorrect");
 		});
 	});
 }

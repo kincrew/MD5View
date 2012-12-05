@@ -182,12 +182,9 @@ button:hover {
 #lists div.md5View {
 	cursor: pointer;
 }
-div.qItems {
-	float:left;
-}
-div.qItems.active {
-	background: #DF0000;
-}
-div.qItems.correct.active {
+div.aCorrect {
 	background: #40A040;
+}
+div.iCorrect {
+	background: #DF0000;
 }
