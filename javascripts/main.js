@@ -8,7 +8,6 @@ Array.prototype.shuffle = function() {
   	this[p] = t;
  	}
 };
-
 var test = function(s) {
 	var z = s || 10;
 	var original = $("#userInputField").val();
@@ -29,21 +28,31 @@ var test = function(s) {
 		});
 	});
 }
-
 var EXCUTE = function() {
+	$("#version").html(_v);
 	var value = CryptoJS.MD5($("#userInputField").val()).toString();
 	md5view(value, document.getElementById("MD5ViewResult"));
+	var clone = $("#MD5ViewResult div.md5View").clone().removeClass("middle").addClass("large");
 	$("#md5ResultHex").html(value);
+	$("#sampleLarge div.item").empty().append(clone);
+	var clone = $("#MD5ViewResult div.md5View").clone();
+	$("#sampleMiddle div.item").empty().append(clone);
+	var clone = $("#MD5ViewResult div.md5View").clone().removeClass("middle").addClass("small");
+	$("#sampleSmall div.item").empty().append(clone);
 }
-
+// update page
+var _r = Math.floor((Math.random()*10000)+1)
+$.get('version.html?rand='+_r, function(data) {
+	if (_v != data) {
+		alert("updated!!! : " + data + " from " + _v);
+		location.reload(true);
+	}
+});
 $(document).ready(function(){
-	SyntaxHighlighter.all();
 	EXCUTE();
 	$("#userInputField").keyup(EXCUTE);
 	$("#maker").html("oneiroi@outlook.com");
-
 	var check;
-
 	$("button").click(function(){
 		$("#lists-item").html("");
 		if (!check) {
@@ -59,5 +68,6 @@ $(document).ready(function(){
 		$("#overlay2").hide();
 		$("#overlay").hide();
 		$("#MD5ViewResult").show();
-	});
+	});	
+	SyntaxHighlighter.all();
 });
