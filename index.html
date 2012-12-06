@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1 IE=edge" />
+	<meta name="description" content="Md5view : JAVASCRIPT MD5 Color Viewer" />
+	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/md5view.css" />
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shCore.css" rel="stylesheet" type="text/css" />
+	<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+
+	<title>MD5View</title>
+
+	<!-- SyntaxHighlighter -->
+	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js" type="text/javascript"></script>
+	<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shAutoloader.js" type="text/javascript"></script>
+	<script src="http://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushJScript.js" type="text/javascript"></script>
+	<script src="http://agorbatchev.typepad.com/pub/sh/3_0_83/scripts/shBrushCSS.js" type="text/javascript"></script>
+	<!-- jQuery -->
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+	<!-- cyypto -->
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
+
+	<!-- MD5 -->
+	<script type="text/javascript" src="md5view.js"></script>
+	<!-- main.js -->
+	<script type="text/javascript"> _v = "0.0.3a"</script>
+	<script type="text/javascript" src="javascripts/main.js"></script>
+
+</head>
+<body>
+	<div id="overlay">
+		<div id="overlay2"></div>
+		<div id="overlayContent">
+			<div id="close">close</div>
+			<div id="lists">
+				<h3> which one? </h3>
+				<div id="lists-item">
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+	</div>
+	<div id="MD5ViewForm">
+		<h2>MD5View <span id="version"></span></h2>
+		<div id="userInput">
+			<h3> INPUT </h3>
+			<div>
+			  <textarea id="userInputField">HELLO WORLD</textarea>
+			</div>
+		</div>
+		<div id="userResult">
+			<h3> RESULT </h3>
+			<div id="userResultView">
+				<div id="MD5ViewResult"></div>
+			</div>
+			<div id="userResultHex"><span id="md5ResultHex"></span></div>
+			<div>
+				<button id="test">Could you distinguish this?</button>
+			</div>
+		</div>
+		<div class="clr"></div>
+		<div id="sample">
+			<h3> DEMO (SIZE)</h3>
+			<div id="sampleLarge" class="sample">
+				<h4>large</h4>
+				<div class="item"></div>
+			</div>
+			<div id="sampleMiddle" class="sample">
+				<h4>middle</h4>
+				<div class="item"></div>
+			</div>
+			<div id="sampleSmall" class="sample">
+				<h4>small</h4>
+				<div class="item"></div>
+			</div>
+			<div class="clr"></div>
+			<div>
+			IE6+, Chrome
+			</div>
+		</div>
+	</div>
+	<div class="code">
+		<h3><a href="md5view.js" target="_blank">DOWNLOAD</a>md5view.js</h3>
+		<pre class="brush: javascript">
+		var md5view = function(value, element, size) {
+			var size = (size&&" "+size) || " middle";
+			var background = [
+				value.substring(0,6), 
+				value.substring(6,12), 
+				value.substring(12,18), 
+				value.substring(18,24),
+				value.substring(24,30)
+			];
+			var html = '&lt;div class="md5View'+size+'" style="border-color:#'+background[0]+'">\n&lt;ul class="md5ViewList">\n';
+			html += '&lt;li class="md5ViewValue" style="background:#'+background[1]+'">';
+			html += '&lt;span class="overlay" style="color:#'+background[3]+'">' +value.charAt(30)+'&lt;/span>';
+			html += '&lt;span>' +value.charAt(30)+'&lt;/span>';
+			html += '&lt;/li>\n&lt;li class="md5ViewValue" style="background:#'+background[2]+'">';
+			html += '&lt;span class="overlay" style="color:#'+background[4]+'">' +value.charAt(31)+'&lt;/span>';
+			html += '&lt;span>' +value.charAt(31)+'&lt;/span>&lt;/li>\n';
+			html += '&lt;/ul>\n&lt;div style="clear:both">&lt;/div>\n&lt;/div>';
+			if (element) {
+				element.innerHTML = html;
+				return element;
+			} else return html;
+		}</pre>
+		<h3><a href="stylesheets/md5view.css" target="_blank">DOWNLOAD</a>CSS</h3>
+		<pre class="brush: css">
+		/* MD5View CSS */
+		/* Default */
+		.md5View {
+			display: inline-block;
+			text-align: center;
+			color : #F3F3F3;
+			width: 2.4em;
+			font-size: 40px;
+			border-width: 10px;
+			border-style: solid;
+		}
+		.md5ViewList {
+			width: 2.4em;
+			margin: 0 auto;
+			border: 1px solid #000;
+			overflow: hidden;
+			zoom: 1;
+			list-style: none;
+		}
+		.md5ViewValue {
+			float: left;
+			position: relative;
+			font-weight: bold;
+			font-family: "Arial Black", "Lucida Grande", "Lucida Sans", sans-serif;
+			text-align: center;
+		}
+		.md5ViewValue span {
+			display: inline-block;
+			color: #000;
+			width: 1.2em;
+			height: 1.2em;
+			line-height: 1.2em;
+		}
+		.md5ViewValue span.overlay {
+			position: absolute;
+			left: 0; top: 0;
+			margin-top: -4px; margin-left: -4px;
+			text-shadow: 1px 1px #BEBEBE;
+		}
+
+		/* large */
+		.md5View.large {
+			font-size: 55px;
+			width: 142px;
+			border-width: 10px;
+		}
+		.md5View.large .md5ViewList {
+			width: 140px;
+		}
+		.md5View.large .md5ViewValue span {
+			width: 70px;
+			height: 70px;
+			line-height: 70px;
+		}
+		/* small */
+		.md5View.small {
+			width: 42px;
+			font-size: 15px;
+			border-width: 4px;
+		}
+		.md5View.small .md5ViewList {
+			width: 40px;
+		}
+		.md5View.small .md5ViewValue span {
+			width: 20px;
+			height: 20px;
+			line-height: 20px;
+		}
+		.md5View.small span.overlay {
+			margin-top: -2px; margin-left: -2px;
+		}</pre>
+	</div>
+	<div id="foot">
+		made by <span id="maker">oneiroi</span>, MIT License
+	</div>
+</body>
+</html>
